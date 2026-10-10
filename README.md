@@ -1,16 +1,12 @@
 # Infinite Drag for EffectCraft
 
-Бесконечное перетаскивание числовых значений.
+Keep dragging numeric values without running out of screen space. The cursor wraps across monitor edges while the value continues smoothly. Works with numeric controls for effects, transforms, text and dialogs; accounts for UI scaling, monitor offsets, button release and focus loss. Each drag gesture remains one Undo step.
 
-Курсор переносится через край монитора, а число продолжает меняться без скачка. Работает в числовых полях эффектов, трансформаций, текста и диалогов. Учитываются масштаб интерфейса, смещение монитора, отпускание кнопки и потеря фокуса. Одно удержание мыши — один шаг Undo.
+## Apply the patch
 
-Native monitor-edge cursor wrapping for continuous numeric editing in EffectCraft.
-
-## Применение
-
-Патч рассчитан на [EffectCraft](https://github.com/storytold/effectcraft) commit `608d1b077b65bb7591f26be587a2a5a47f4278bc`.
-Он применяется отдельно от двух других функциональных патчей. Готовые исходники со всеми
-изменениями и Windows-сборка: [effectcraft-custom](https://github.com/kikikikier/effectcraft-custom).
+This patch targets [EffectCraft](https://github.com/storytold/effectcraft) commit `608d1b077b65bb7591f26be587a2a5a47f4278bc`.
+It can be applied independently of the other two feature patches. For all three features together,
+full source and a Windows build, see [effectcraft-custom](https://github.com/kikikikier/effectcraft-custom).
 
 ```powershell
 git clone https://github.com/kikikikier/effectcraft-infinite-drag.git
@@ -19,33 +15,34 @@ Set-Location effectcraft
 git checkout 608d1b077b65bb7591f26be587a2a5a47f4278bc
 git apply --check ../effectcraft-infinite-drag/effectcraft-infinite-drag.patch
 git apply ../effectcraft-infinite-drag/effectcraft-infinite-drag.patch
-# Общая правка оформления применяется один раз, даже если установлены несколько патчей.
+# Apply the shared custom-build branding patch once, even when combining features.
 git apply ../effectcraft-infinite-drag/custom-build-branding.patch
 cargo +1.95.0 build --locked --release -p effectcraft
 ```
 
-Патчи не предназначены для произвольной новой версии upstream без проверки совместимости.
-Если распространяете свою изменённую сборку, удалите также файлы фирменных знаков из
-`docs/brand/` и их изображения в документации согласно условиям upstream.
+Compatibility with newer upstream versions must be checked before applying the patch.
+When distributing a modified build, also remove the trademark assets in `docs/brand/`
+and their images in the documentation, as required by the upstream terms.
 
-## Проверка
+## Validation
 
 ```powershell
 cargo +1.95.0 test --release -p effectcraft-ui-egui --lib pointer_wrap::tests
 ```
 
-Проверена применимость каждого патча к чистому базовому commit и совместимость всех трёх
-патчей во всех шести порядках применения. Подробности проверки общей сборки — в
-[отчёте](https://github.com/kikikikier/effectcraft-custom/blob/main/CUSTOM-BUILD.md).
+Each patch was checked against the clean base commit. All six application orders of the three
+patches produce the same source tree. Combined-build results and known limitations are documented
+in the [build report](https://github.com/kikikikier/effectcraft-custom/blob/main/CUSTOM-BUILD.md).
 
-## Связанные репозитории
+## Related repositories
 
-- [effectcraft-type-in-font-search](https://github.com/kikikikier/effectcraft-type-in-font-search)
-- [effectcraft-textbox-plugin](https://github.com/kikikikier/effectcraft-textbox-plugin)
-- [Все изменения вместе](https://github.com/kikikikier/effectcraft-custom)
+- [Type-in Font Search](https://github.com/kikikikier/effectcraft-type-in-font-search)
+- [TextBox Plugin](https://github.com/kikikikier/effectcraft-textbox-plugin)
+- [All three features together](https://github.com/kikikikier/effectcraft-custom)
 
-## Происхождение и лицензия
+## Credits and license
 
-Основано на EffectCraft команды ArtCraft и участников проекта. Это независимые изменения,
-а не официальный релиз upstream. Лицензия кода: **MIT OR Apache-2.0**; уведомления об авторстве
-сохранены в [NOTICE](NOTICE), [LICENSE-MIT](LICENSE-MIT) и [LICENSE-APACHE](LICENSE-APACHE).
+Based on EffectCraft by the ArtCraft Team and contributors. This is an independent community
+addition, not an official upstream release. Code is licensed under **MIT OR Apache-2.0**;
+upstream notices are preserved in [NOTICE](NOTICE), [LICENSE-MIT](LICENSE-MIT)
+and [LICENSE-APACHE](LICENSE-APACHE).
