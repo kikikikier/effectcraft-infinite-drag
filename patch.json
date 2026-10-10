@@ -1,0 +1,8 @@
+{
+  "name": "Infinite Drag",
+  "upstream": "https://github.com/storytold/effectcraft",
+  "base_commit": "608d1b077b65bb7591f26be587a2a5a47f4278bc",
+  "patch": "effectcraft-infinite-drag.patch",
+  "sha256": "8252575d3c7c0cb33178cc1affab1edb45b9282106d3a74d574135f06244928a",
+  "combined_repository": "https://github.com/kikikikier/effectcraft-custom"
+}
